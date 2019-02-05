@@ -37,5 +37,4 @@ class Voting() : VerticalLayout() {
             button.isEnabled = false
         }
     }
-
 }
