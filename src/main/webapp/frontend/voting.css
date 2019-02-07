@@ -1,0 +1,16 @@
+body {
+    background-image: url("crefobg2.jpg");
+    font-size: large;
+}
+
+.crefo {
+    font-size: large;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif
+    font-weight: normal;
+}
+
+h1 {
+    font-weight: bold;
+    font-family: "Arial Black";
+    color: aliceblue;
+}

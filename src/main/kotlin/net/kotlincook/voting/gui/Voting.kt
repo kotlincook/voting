@@ -2,6 +2,7 @@ package net.kotlincook.voting.gui
 
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.dependency.StyleSheet
+import com.vaadin.flow.component.html.H1
 import com.vaadin.flow.component.html.Label
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.component.radiobutton.RadioButtonGroup
@@ -16,7 +17,7 @@ import net.kotlincook.voting.model.voteModel
 
 @Route("voting")
 @StyleSheet("frontend://voting.css")
-class Voting() : VerticalLayout() {
+class   Voting : VerticalLayout() {
 
     val optionHeader = Label(oneOption.descripion)
     val answer = Label()
@@ -26,26 +27,28 @@ class Voting() : VerticalLayout() {
 //        forField(proHeader).bind("value")
 //    }
 
-    val RADIO_YES  = "ich bin dabei";
-    val RADIO_IRR = "ist mir gleich";
-    val RADIO_NO = "lehne ich ab";
+    companion object {
+        val RADIO_YES  = "ich bin dabei"
+        val RADIO_IRR = "ist mir gleich"
+        val RADIO_NO = "lehne ich ab"
+    }
     val radioButtons = RadioButtonGroup<String>().apply {
         setItems(RADIO_YES, RADIO_IRR, RADIO_NO)
     }
 
     init {
-        code = VaadinService.getCurrentRequest().getParameter("code")
-        className = "main"
+        className = "crefo"
 
         val voteButton = Button("Abstimmen").apply {
             isEnabled = false
         }
-
+        add(H1("Crefo Vote"))
         add(optionHeader)
         add(radioButtons)
         add(voteButton)
         add(answer)
 
+        code = VaadinService.getCurrentRequest().getParameter("code")
         radioButtons.addValueChangeListener {
             voteButton.isEnabled = true
         }
