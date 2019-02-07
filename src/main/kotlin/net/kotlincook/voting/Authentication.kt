@@ -3,7 +3,7 @@ package net.kotlincook.voting
 import net.kotlincook.voting.Authentication.AuthResult.*
 
 interface Authentication {
-    enum class AuthResult { OK, USED, EXPIRE, INVALID}
+    enum class AuthResult { OK, USED, EXPIRED, INVALID}
     fun isCodeValid(code: String?): AuthResult
 }
 

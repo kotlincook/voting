@@ -2,6 +2,10 @@ package net.kotlincook.voting.model
 
 import net.kotlincook.voting.model.Attitude.*
 
+val oneOption = Option("Wollen wir in Zukunft per Consent-Beschluss abstimmen?")
+val voteModel = VoteModel(oneOption)
+
+
 enum class Attitude {
     YES, IRR, NO
 }
@@ -23,7 +27,10 @@ class AttitudeCounter: HashMap<Attitude, Int>() {
     }
 }
 
-open class VoteModel(val options: List<Option> = ArrayList()) {
+
+data class Option(val descripion: String, val arguments: MutableList<String> = ArrayList())
+
+data class VoteModel(val options: List<Option> = ArrayList()) {
     constructor(option: Option): this(listOf(option))
 
     val votesPerOption: MutableMap<Option, AttitudeCounter> =
@@ -46,8 +53,6 @@ open class VoteModel(val options: List<Option> = ArrayList()) {
                 .substringBeforeLast(",")
 
 }
-
-data class Option(val descripion: String, val arguments: MutableList<String> = ArrayList())
 
 fun main(args: Array<String>) {
     val option1 = Option("Bin dafür")
