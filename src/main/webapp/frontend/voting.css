@@ -5,7 +5,6 @@ body {
 
 .crefo {
     font-size: large;
-    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif
     font-weight: normal;
 }
 
@@ -13,4 +12,31 @@ h1 {
     font-weight: bold;
     font-family: "Arial Black";
     color: aliceblue;
+    margin-bottom: 0em;
+}
+
+h3 {
+    color: darkblue;
+    margin-bottom: 0em;
+}
+
+h4 {
+    color: #00a0ff;
+    margin-bottom: 0.3em;
+    margin-top: 0em;
+}
+
+.comment-label {
+    font-size: small;
+    color: slategrey;
+}
+.comment-plus-button {
+    width: 1.5em;
+    height: 1.5em
+}
+
+.comment-new-comment {
+    width: 30em;
+    height: 1em;
+    font-size: small;
 }

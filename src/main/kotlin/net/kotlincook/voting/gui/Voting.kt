@@ -3,6 +3,8 @@ package net.kotlincook.voting.gui
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.dependency.StyleSheet
 import com.vaadin.flow.component.html.H1
+import com.vaadin.flow.component.html.H2
+import com.vaadin.flow.component.html.H3
 import com.vaadin.flow.component.html.Label
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.component.radiobutton.RadioButtonGroup
@@ -14,36 +16,37 @@ import net.kotlincook.voting.model.Attitude.*
 import net.kotlincook.voting.model.oneOption
 import net.kotlincook.voting.model.voteModel
 
-
+// https://crefovote.herokuapp.com/
 @Route("voting")
 @StyleSheet("frontend://voting.css")
 class   Voting : VerticalLayout() {
 
-    val optionHeader = Label(oneOption.descripion)
+    val optionHeader = H3(oneOption.descripion)
     val answer = Label()
     val code: String?
 
-//    val binder = Binder(TwoOptionsModel.TextFieldBean::class.java).apply {
-//        forField(proHeader).bind("value")
-//    }
-
     companion object {
         val RADIO_YES  = "ich bin dabei"
-        val RADIO_IRR = "ist mir gleich"
-        val RADIO_NO = "lehne ich ab"
+        val RADIO_IRR  = "ist mir gleich"
+        val RADIO_NO   = "lehne ich ab"
     }
     val radioButtons = RadioButtonGroup<String>().apply {
         setItems(RADIO_YES, RADIO_IRR, RADIO_NO)
     }
+    val voteButton = Button("Abstimmen").apply {
+        isDisableOnClick = true
+        isEnabled = false
+    }
 
     init {
         className = "crefo"
-
-        val voteButton = Button("Abstimmen").apply {
-            isEnabled = false
-        }
         add(H1("Crefo Vote"))
         add(optionHeader)
+
+        // Kommentare
+        oneOption.arguments.addAll(mutableListOf("Das ist gut", "Find ich blöd"))
+        add(CommentList(oneOption.arguments))
+
         add(radioButtons)
         add(voteButton)
         add(answer)
@@ -72,10 +75,7 @@ class   Voting : VerticalLayout() {
                     else -> throw IllegalStateException("No Radio Button selected")
                 }
             }
-            voteButton.isEnabled = false
         }
-
-//        binder.readBean(textFieldBean)
 
     }
 }
