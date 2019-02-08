@@ -53,13 +53,3 @@ data class VoteModel(val options: List<Option> = ArrayList()) {
                 .substringBeforeLast(",")
 
 }
-
-fun main(args: Array<String>) {
-    val option1 = Option("Bin dafür")
-    val option2 = Option("Bin dagegen")
-    val voteModel = VoteModel()
-    voteModel.addAttitude(option1, NO)
-    voteModel.addAttitude(option2, YES)
-    voteModel.addAttitude(option2, IRR)
-    println(voteModel)
-}

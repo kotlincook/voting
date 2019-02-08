@@ -23,7 +23,3 @@ object Authenticator: Authentication {
 
     private fun codeValidation(code: String) = code.hashCode() % 2 == 0
 }
-
-fun main(args: Array<String>) {
-    println("ABCE".hashCode())
-}
