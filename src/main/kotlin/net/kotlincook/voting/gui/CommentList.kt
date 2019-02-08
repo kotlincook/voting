@@ -1,6 +1,9 @@
 package net.kotlincook.voting.gui
 
+import com.vaadin.flow.component.Component
+import com.vaadin.flow.component.ComponentEvent
 import com.vaadin.flow.component.button.Button
+import com.vaadin.flow.component.ClickEvent
 import com.vaadin.flow.component.html.H4
 import com.vaadin.flow.component.html.Image
 import com.vaadin.flow.component.html.Label
@@ -22,6 +25,19 @@ class CommentList(val labelList: MutableList<String> = ArrayList()) : VerticalLa
         }
     }
 
+    class ImageEvent(source: Image, fromClient: Boolean) : ComponentEvent<Image>(source, fromClient)
+
+    val plusImage = Image("frontend/add_button.png", "ADD").apply {
+        className = "comment-plus-button"
+        addListener(ClickEvent::class.java) {
+            println("Hallo")
+            this@CommentList.add(newCommentField.apply {
+                value = ""
+                focus()
+            })
+        }
+    }
+
     val newCommentField = TextField().apply {
         className = "comment-new-comment"
         addKeyPressListener {
@@ -37,7 +53,7 @@ class CommentList(val labelList: MutableList<String> = ArrayList()) : VerticalLa
         isPadding = false
         isSpacing = false
         add(HorizontalLayout().apply {
-            add(H4("Deine Meinungen"), plusButton)
+            add(H4("Deine Meinungen"), plusImage)
         })
         labelList.forEach {
             add(newLabel(it))

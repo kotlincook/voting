@@ -44,7 +44,6 @@ class   Voting : VerticalLayout() {
         add(optionHeader)
 
         // Kommentare
-        oneOption.arguments.addAll(mutableListOf("Das ist gut", "Find ich blöd"))
         add(CommentList(oneOption.arguments))
 
         add(radioButtons)
