@@ -34,12 +34,13 @@ class   Voting : VerticalLayout() {
         setItems(RADIO_YES, RADIO_IRR, RADIO_NO)
     }
     val voteButton = Button("Abstimmen").apply {
+        className = "vote-button"
         isDisableOnClick = true
         isEnabled = false
     }
 
     init {
-        className = "crefo"
+        className = "voting"
         add(H1("Crefo Vote"))
         add(optionHeader)
 

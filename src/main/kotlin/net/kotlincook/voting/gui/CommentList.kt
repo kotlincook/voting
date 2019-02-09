@@ -53,14 +53,14 @@ class CommentList(val labelList: MutableList<String> = ArrayList()) : VerticalLa
         isPadding = false
         isSpacing = false
         add(HorizontalLayout().apply {
-            add(H4("Deine Meinungen"), plusImage)
+            add(H4("Eure Meinungen"), plusImage)
         })
         labelList.forEach {
             add(newLabel(it))
         }
     }
 
-    fun newLabel(text: String) = Label(text).apply {
+    fun newLabel(text: String) = Label("− $text").apply {
         className = "comment-label"
     }
 

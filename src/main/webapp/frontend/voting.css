@@ -1,9 +1,11 @@
 body {
     background-image: url("crefobg2.jpg");
     font-size: large;
+    --lumo-primary-text-color: #0890DA;
+    --lumo-primary-color: #03A6FF;
 }
 
-.crefo {
+.voting {
     font-size: large;
     font-weight: normal;
 }
@@ -21,24 +23,27 @@ h3 {
 }
 
 h4 {
-    color: #00a0ff;
+    color: #0890DA;
     margin-bottom: 0.3em;
     margin-top: 0em;
 }
 
+.vote-button {
+    cursor: pointer;
+}
+
 .comment-label {
-    font-size: small;
+    font-size: smaller;
     color: slategrey;
 }
 .comment-plus-button {
     width: 1.3em;
     height: 1.3em;
     cursor: pointer;
-    --lumo-button-size: 0px;
 }
 
 .comment-new-comment {
     width: 30em;
     height: 1em;
-    font-size: small;
+    font-size: smaller;
 }
