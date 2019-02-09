@@ -45,7 +45,7 @@ class CommentList(val labelList: MutableList<String> = ArrayList()) : VerticalLa
         }
     }
 
-    fun newLabel(text: String) = Label("− $text").apply {
+    fun newLabel(text: String) = Label(text).apply {
         className = "comment-label"
     }
 
