@@ -19,7 +19,7 @@ import net.kotlincook.voting.model.voteModel
 // https://crefovote.herokuapp.com/
 @Route("voting")
 @StyleSheet("frontend://voting.css")
-class   Voting : VerticalLayout() {
+class Voting : VerticalLayout() {
 
     val optionHeader = H3(oneOption.descripion)
     val answer = Label()
