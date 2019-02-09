@@ -64,8 +64,8 @@ class   Voting : VerticalLayout() {
                 when (valid) {
                     OK -> "Vielen Dank für Deine Teilnahme!"
                     EXPIRED -> "Die Zeit für die Teilnahme ist bereits abgelaufen."
-                    INVALID -> "Ungültiger Code! Bei Problemen wende Dich an Jörg..."
-                    USED -> "Du hast bereits teilgenommen."
+                    INVALID -> "Ungültiger Code! Bei Problemen wende Dich bitte an Jörg."
+                    USED -> "Du hast bereits abgestimmt."
                 }
             if (valid == OK)  {
                 when (radioButtons.value) {
