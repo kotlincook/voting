@@ -3,6 +3,7 @@ package net.kotlincook.voting.gui
 import com.vaadin.flow.component.charts.Chart
 import com.vaadin.flow.component.charts.model.*
 import com.vaadin.flow.component.dependency.StyleSheet
+import com.vaadin.flow.component.notification.Notification
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.router.Route
 import net.kotlincook.voting.gui.Voting.Companion.RADIO_IRR
@@ -19,7 +20,7 @@ class Chart : VerticalLayout() {
         val chart = Chart()
         val configuration = chart.getConfiguration()
         configuration.setTitle("Crefo-Vote: Abstimmungsergebnis")
-        configuration.setSubTitle("Powered by <a href=\"http://kotlincook.de/\">KotlinCook</a>")
+        // configuration.setSubTitle("Powered by <a href=\"http://kotlincook.de/\">KotlinCook</a>")
         chart.getConfiguration().getChart().setType(ChartType.BAR)
 
         voteModel.votesPerOption.forEach {

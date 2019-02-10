@@ -1,5 +1,5 @@
 /target/
-/grafics/
+/graphics/
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###

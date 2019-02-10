@@ -10,9 +10,9 @@ import net.kotlincook.voting.model.Attitude
 import net.kotlincook.voting.model.Attitude.*
 import net.kotlincook.voting.model.voteModel
 
-@Route("result")
-@StyleSheet("frontend://voting.css")
-class Result() : VerticalLayout() {
+@Route("results")
+@StyleSheet("frontend://results.css")
+class Results() : VerticalLayout() {
 
     data class TableRow(var optionDescription: String,
                         var cntYes: Int, var cntIrr: Int, var cntNo:Int)
