@@ -25,7 +25,7 @@ class CommentList(val labelList: MutableList<String> = ArrayList()) : VerticalLa
 
     val newCommentField = TextField().apply {
         className = "comment-new-comment"
-        addKeyPressListener { e ->
+        addKeyDownListener { e ->
             when {
                 e.key.matches("Enter") -> {
                     remove(this)
