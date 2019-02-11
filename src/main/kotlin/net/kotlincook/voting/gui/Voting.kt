@@ -26,9 +26,9 @@ class Voting : VerticalLayout() {
     val optionHeader1 = H3(options[1].descripion)
 
     companion object {
-        val RADIO_YES = "ich bin dabei"
-        val RADIO_IRR = "ist mir gleich"
-        val RADIO_NO = "lehne ich ab"
+        val RADIO_YES = "ich bin voll dafür"
+        val RADIO_IRR = "kann ich mit leben"
+        val RADIO_NO = "lehne ich komplett ab"
     }
 
     val radioButtons0 = RadioButtonGroup<String>().apply {
