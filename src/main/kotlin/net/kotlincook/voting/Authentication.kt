@@ -39,8 +39,17 @@ object Authenticator: Authentication {
         return (code - 1311L) / 2937L > System.currentTimeMillis() / 100000L
     }
 }
-//
-//fun main(args: Array<String>) {
-//    val parse = SimpleDateFormat("yyyy-MM-dd").parse("2019-02-10")
-//    println((parse.time/100000 + 35) * 2937 + 1311)
-//}
+
+fun main(args: Array<String>) {
+    val parse = SimpleDateFormat("yyyy-MM-dd").parse("2019-02-13")
+    println((parse.time/100000 + 35) * 2937 + 1311)
+    val set: MutableSet<Int> = mutableSetOf()
+    for (i in 1..30) {
+        set += (Math.random() * 1000.0).toInt()
+    }
+    val list = ArrayList(set)
+    list.sort()
+    list.forEach {
+        println((parse.time/100000 + it) * 2937 + 1311)
+    }
+}
