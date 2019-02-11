@@ -3,6 +3,7 @@ package net.kotlincook.voting.gui
 import com.vaadin.flow.component.charts.Chart
 import com.vaadin.flow.component.charts.model.*
 import com.vaadin.flow.component.dependency.StyleSheet
+import com.vaadin.flow.component.html.H1
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.router.Route
 import net.kotlincook.voting.gui.Voting.Companion.RADIO_IRR
@@ -16,9 +17,10 @@ import net.kotlincook.voting.model.ModelSingleton
 class Chart : VerticalLayout() {
 
     init {
+        add(H1("Anonymous Voting App"))
         val chart = Chart()
         val configuration = chart.getConfiguration()
-        configuration.setTitle("Crefo-Vote: Abstimmungsergebnis")
+        configuration.setTitle("Abstimmungsergebnis")
         // configuration.setSubTitle("Powered by <a href=\"http://kotlincook.de/\">KotlinCook</a>")
         chart.getConfiguration().getChart().setType(ChartType.BAR)
 
