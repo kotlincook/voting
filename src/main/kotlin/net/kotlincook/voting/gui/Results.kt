@@ -34,7 +34,7 @@ class Results() : VerticalLayout() {
         table.columns[3].width = "130px"
         table.width = "1000px"
 
-        add(H1("Crefo Vote"))
+        add(H1("Anonymous Voting App"))
         add(H3("Abstimmungsergebnis"))
         add(table)
     }

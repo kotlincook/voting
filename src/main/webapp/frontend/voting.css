@@ -1,12 +1,12 @@
 body {
-    background: url("bg_voting.jpg") no-repeat center center fixed;
+    background: url("bg_voting.jpg");
     font-size: large;
     --lumo-primary-text-color: #0890DA;
     --lumo-primary-color: #03A6FF;
     --lumo-font-size-l: 22px;
     --lumo-font-size-m: 18px;
     --lumo-font-size-s: 16px;
-    --lumo-font-size-xl: 24px;
+    --lumo-font-size-xl: 22px;
     --lumo-font-size-xxl: 36px;
     --lumo-font-size-xxxl: 40px;
 }
@@ -18,7 +18,7 @@ body {
 
 h1 {
     font-weight: bold;
-    font-family: "Arial Black";
+    font-family: "Dialog";
     color: aliceblue;
     margin-bottom: 0em;
 }

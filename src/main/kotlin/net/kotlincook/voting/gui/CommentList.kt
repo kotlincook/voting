@@ -45,7 +45,7 @@ class CommentList(val labelList: MutableList<String> = ArrayList()) : VerticalLa
         isPadding = false
         isSpacing = false
         add(HorizontalLayout().apply {
-            add(H4("Eure Meinungen"), plusImage)
+            add(H4("Einwände"), plusImage)
         })
         labelList.forEach {
             add(newLabel(it))

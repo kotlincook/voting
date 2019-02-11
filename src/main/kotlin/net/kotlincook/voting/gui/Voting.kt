@@ -13,25 +13,40 @@ import net.kotlincook.voting.Authentication.AuthResult.*
 import net.kotlincook.voting.Authenticator
 import net.kotlincook.voting.model.Attitude.*
 import net.kotlincook.voting.model.ModelSingleton
-import net.kotlincook.voting.model.oneOption
+import net.kotlincook.voting.model.options
 
 // https://crefovote.herokuapp.com/
 @Route("voting")
 @StyleSheet("frontend://voting.css")
 class Voting : VerticalLayout() {
-
-    val optionHeader = H3(oneOption.descripion)
-    val answer = Label()
     val code: String?
+    val answer = Label()
+
+    val optionHeader0 = H3(options[0].descripion)
+    val optionHeader1 = H3(options[1].descripion)
 
     companion object {
         val RADIO_YES  = "ich bin dabei"
         val RADIO_IRR  = "ist mir gleich"
         val RADIO_NO   = "lehne ich ab"
     }
-    val radioButtons = RadioButtonGroup<String>().apply {
+    val radioButtons0 = RadioButtonGroup<String>().apply {
         setItems(RADIO_YES, RADIO_IRR, RADIO_NO)
+        addValueChangeListener {
+            voteButton.isEnabled = canVoteButtonBeEnabled()
+        }
     }
+    val radioButtons1 = RadioButtonGroup<String>().apply {
+        setItems(RADIO_YES, RADIO_IRR, RADIO_NO)
+        addValueChangeListener {
+            voteButton.isEnabled = canVoteButtonBeEnabled()
+        }
+    }
+
+    fun canVoteButtonBeEnabled(): Boolean {
+        return radioButtons0.value != null && radioButtons1.value != null
+    }
+
     val voteButton = Button("Abstimmen").apply {
         className = "vote-button"
         isDisableOnClick = true
@@ -40,20 +55,25 @@ class Voting : VerticalLayout() {
 
     init {
         className = "voting"
-        add(H1("Crefo Vote"))
-        add(optionHeader)
+
+        add(H1("Anonymous Voting App"))
+        add(optionHeader0)
 
         // Kommentare
-        add(CommentList(oneOption.arguments))
-
-        add(radioButtons)
+        add(CommentList(options[0].arguments))
+        add(radioButtons0)
         add(voteButton)
+
+        add(optionHeader1)
+
+        // Kommentare
+        add(CommentList(options[1].arguments))
+        add(radioButtons1)
+        add(voteButton)
+
         add(answer)
 
         code = VaadinService.getCurrentRequest().getParameter("code")
-        radioButtons.addValueChangeListener {
-            voteButton.isEnabled = true
-        }
 
         voteButton.addClickListener {
             // val ip = UI.getCurrent().session.browser.address
@@ -67,10 +87,16 @@ class Voting : VerticalLayout() {
                     USED -> "Du hast bereits abgestimmt."
                 }
             if (valid == OK)  {
-                when (radioButtons.value) {
-                    RADIO_YES -> ModelSingleton.addAttitude(oneOption, YES)
-                    RADIO_IRR -> ModelSingleton.addAttitude(oneOption, IRR)
-                    RADIO_NO  -> ModelSingleton.addAttitude(oneOption, NO)
+                when (radioButtons0.value) {
+                    RADIO_YES -> ModelSingleton.addAttitude(options[0], YES)
+                    RADIO_IRR -> ModelSingleton.addAttitude(options[0], IRR)
+                    RADIO_NO  -> ModelSingleton.addAttitude(options[0], NO)
+                    else -> throw IllegalStateException("No Radio Button selected")
+                }
+                when (radioButtons1.value) {
+                    RADIO_YES -> ModelSingleton.addAttitude(options[1], YES)
+                    RADIO_IRR -> ModelSingleton.addAttitude(options[1], IRR)
+                    RADIO_NO  -> ModelSingleton.addAttitude(options[1], NO)
                     else -> throw IllegalStateException("No Radio Button selected")
                 }
             }
