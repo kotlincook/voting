@@ -1,5 +1,5 @@
 body {
-    background-image: url("bg_voting.jpg");
+    background: url("bg_voting.jpg") no-repeat center center fixed;
     font-size: large;
     --lumo-primary-text-color: #0890DA;
     --lumo-primary-color: #03A6FF;
