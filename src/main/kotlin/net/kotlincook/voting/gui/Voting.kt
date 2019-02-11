@@ -22,30 +22,10 @@ class Voting : VerticalLayout() {
     val code: String?
     val answer = Label()
 
-    val optionHeader0 = H3(options[0].descripion)
-    val optionHeader1 = H3(options[1].descripion)
-
     companion object {
         val RADIO_YES = "ja, ich bin dafür"
         val RADIO_IRR = "ok, kann ich mit leben"
-        val RADIO_NO  = "nein, lehne ich ab!"
-    }
-
-    val radioButtons0 = RadioButtonGroup<String>().apply {
-        setItems(RADIO_YES, RADIO_IRR, RADIO_NO)
-        addValueChangeListener {
-            voteButton.isEnabled = canVoteButtonBeEnabled()
-        }
-    }
-    val radioButtons1 = RadioButtonGroup<String>().apply {
-        setItems(RADIO_YES, RADIO_IRR, RADIO_NO)
-        addValueChangeListener {
-            voteButton.isEnabled = canVoteButtonBeEnabled()
-        }
-    }
-
-    fun canVoteButtonBeEnabled(): Boolean {
-        return radioButtons0.value != null && radioButtons1.value != null
+        val RADIO_NO = "nein, lehne ich ab!"
     }
 
     val voteButton = Button("Abstimmen").apply {
@@ -54,24 +34,32 @@ class Voting : VerticalLayout() {
         isEnabled = false
     }
 
+    val radioGroups = (1..options.size).map {
+        RadioButtonGroup<String>().apply {
+            setItems(RADIO_YES, RADIO_IRR, RADIO_NO)
+            addValueChangeListener {
+                voteButton.isEnabled = canVoteButtonBeEnabled()
+            }
+        }
+    }
+
+    fun canVoteButtonBeEnabled(): Boolean {
+        return radioGroups.all {
+            it.value != null
+        }
+    }
+
     init {
         className = "voting"
-
         add(H1("Anonymous Voting App"))
-        add(optionHeader0)
 
-        // Kommentare
-        add(CommentList(options[0].arguments))
-        add(radioButtons0)
+        options.forEachIndexed { i, option ->
+            add(H3(option.descripion))
+            // Kommentare
+            add(CommentList(option.arguments))
+            add(radioGroups[i])
+        }
         add(voteButton)
-
-        add(optionHeader1)
-
-        // Kommentare
-        add(CommentList(options[1].arguments))
-        add(radioButtons1)
-        add(voteButton)
-
         add(answer)
 
         code = VaadinService.getCurrentRequest().getParameter("code")
@@ -88,19 +76,15 @@ class Voting : VerticalLayout() {
                         USED -> "Du hast bereits abgestimmt."
                     }
             if (valid == OK) {
-                when (radioButtons0.value) {
-                    RADIO_YES -> ModelSingleton.addAttitude(options[0], YES)
-                    RADIO_IRR -> ModelSingleton.addAttitude(options[0], IRR)
-                    RADIO_NO -> ModelSingleton.addAttitude(options[0], NO)
-                    else -> throw IllegalStateException("No Radio Button selected")
+                options.forEachIndexed { i, option ->
+                    when (radioGroups[i].value) {
+                        RADIO_YES -> ModelSingleton.addAttitude(option, YES)
+                        RADIO_IRR -> ModelSingleton.addAttitude(option, IRR)
+                        RADIO_NO -> ModelSingleton.addAttitude(option, NO)
+                        else -> throw IllegalStateException("No Radio Button selected")
+                    }
                 }
-                when (radioButtons1.value) {
-                    RADIO_YES -> ModelSingleton.addAttitude(options[1], YES)
-                    RADIO_IRR -> ModelSingleton.addAttitude(options[1], IRR)
-                    RADIO_NO -> ModelSingleton.addAttitude(options[1], NO)
-                    else -> throw IllegalStateException("No Radio Button selected")
-                }
-            }
-        }
-    }
+            }// if
+        }//addClickListener
+    }// init
 }
