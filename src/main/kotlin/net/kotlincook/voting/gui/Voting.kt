@@ -3,7 +3,6 @@ package net.kotlincook.voting.gui
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.dependency.StyleSheet
 import com.vaadin.flow.component.html.H1
-import com.vaadin.flow.component.html.H2
 import com.vaadin.flow.component.html.H3
 import com.vaadin.flow.component.html.Label
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
@@ -13,8 +12,8 @@ import com.vaadin.flow.server.VaadinService
 import net.kotlincook.voting.Authentication.AuthResult.*
 import net.kotlincook.voting.Authenticator
 import net.kotlincook.voting.model.Attitude.*
+import net.kotlincook.voting.model.ModelSingleton
 import net.kotlincook.voting.model.oneOption
-import net.kotlincook.voting.model.voteModel
 
 // https://crefovote.herokuapp.com/
 @Route("voting")
@@ -69,9 +68,9 @@ class Voting : VerticalLayout() {
                 }
             if (valid == OK)  {
                 when (radioButtons.value) {
-                    RADIO_YES -> voteModel.addAttitude(oneOption, YES)
-                    RADIO_IRR -> voteModel.addAttitude(oneOption, IRR)
-                    RADIO_NO  -> voteModel.addAttitude(oneOption, NO)
+                    RADIO_YES -> ModelSingleton.addAttitude(oneOption, YES)
+                    RADIO_IRR -> ModelSingleton.addAttitude(oneOption, IRR)
+                    RADIO_NO  -> ModelSingleton.addAttitude(oneOption, NO)
                     else -> throw IllegalStateException("No Radio Button selected")
                 }
             }

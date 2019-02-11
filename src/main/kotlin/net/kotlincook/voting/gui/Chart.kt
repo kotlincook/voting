@@ -3,14 +3,13 @@ package net.kotlincook.voting.gui
 import com.vaadin.flow.component.charts.Chart
 import com.vaadin.flow.component.charts.model.*
 import com.vaadin.flow.component.dependency.StyleSheet
-import com.vaadin.flow.component.notification.Notification
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.router.Route
 import net.kotlincook.voting.gui.Voting.Companion.RADIO_IRR
 import net.kotlincook.voting.gui.Voting.Companion.RADIO_NO
 import net.kotlincook.voting.gui.Voting.Companion.RADIO_YES
 import net.kotlincook.voting.model.Attitude
-import net.kotlincook.voting.model.voteModel
+import net.kotlincook.voting.model.ModelSingleton
 
 @Route("chart")
 @StyleSheet("frontend://chart.css")
@@ -23,7 +22,7 @@ class Chart : VerticalLayout() {
         // configuration.setSubTitle("Powered by <a href=\"http://kotlincook.de/\">KotlinCook</a>")
         chart.getConfiguration().getChart().setType(ChartType.BAR)
 
-        voteModel.votesPerOption.forEach {
+        ModelSingleton.votesPerOption.forEach {
             configuration.addSeries(ListSeries(it.key.descripion,
                     it.value[Attitude.YES], it.value[Attitude.IRR], it.value[Attitude.NO]))
         }

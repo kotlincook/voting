@@ -3,8 +3,8 @@ package net.kotlincook.voting.model
 import net.kotlincook.voting.model.Attitude.*
 
 val oneOption = Option("Wollen wir in Zukunft per Consent-Beschluss abstimmen?")
-val voteModel = VoteModel(oneOption)
 
+object ModelSingleton : VoteModel(oneOption)
 
 enum class Attitude {
     YES, IRR, NO
@@ -30,7 +30,7 @@ class AttitudeCounter: HashMap<Attitude, Int>() {
 
 data class Option(val descripion: String, val arguments: MutableList<String> = ArrayList())
 
-data class VoteModel(val options: List<Option> = ArrayList()) {
+open class VoteModel(val options: List<Option> = ArrayList()) {
     constructor(option: Option): this(listOf(option))
 
     val votesPerOption: MutableMap<Option, AttitudeCounter> =
