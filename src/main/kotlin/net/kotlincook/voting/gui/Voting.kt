@@ -26,10 +26,11 @@ class Voting : VerticalLayout() {
     val optionHeader1 = H3(options[1].descripion)
 
     companion object {
-        val RADIO_YES  = "ich bin dabei"
-        val RADIO_IRR  = "ist mir gleich"
-        val RADIO_NO   = "lehne ich ab"
+        val RADIO_YES = "ich bin dabei"
+        val RADIO_IRR = "ist mir gleich"
+        val RADIO_NO = "lehne ich ab"
     }
+
     val radioButtons0 = RadioButtonGroup<String>().apply {
         setItems(RADIO_YES, RADIO_IRR, RADIO_NO)
         addValueChangeListener {
@@ -80,23 +81,23 @@ class Voting : VerticalLayout() {
             val valid = Authenticator.isCodeValid(code)
 
             answer.text =
-                when (valid) {
-                    OK -> "Vielen Dank für Deine Teilnahme!"
-                    EXPIRED -> "Die Zeit für die Teilnahme ist bereits abgelaufen."
-                    INVALID -> "Ungültiger Code! Bei Problemen wende Dich bitte an Jörg."
-                    USED -> "Du hast bereits abgestimmt."
-                }
-            if (valid == OK)  {
+                    when (valid) {
+                        OK -> "Vielen Dank für Deine Teilnahme!"
+                        EXPIRED -> "Die Zeit für die Teilnahme ist bereits abgelaufen."
+                        INVALID -> "Ungültiger Code! Bei Problemen wende Dich bitte an Jörg."
+                        USED -> "Du hast bereits abgestimmt."
+                    }
+            if (valid == OK) {
                 when (radioButtons0.value) {
                     RADIO_YES -> ModelSingleton.addAttitude(options[0], YES)
                     RADIO_IRR -> ModelSingleton.addAttitude(options[0], IRR)
-                    RADIO_NO  -> ModelSingleton.addAttitude(options[0], NO)
+                    RADIO_NO -> ModelSingleton.addAttitude(options[0], NO)
                     else -> throw IllegalStateException("No Radio Button selected")
                 }
                 when (radioButtons1.value) {
                     RADIO_YES -> ModelSingleton.addAttitude(options[1], YES)
                     RADIO_IRR -> ModelSingleton.addAttitude(options[1], IRR)
-                    RADIO_NO  -> ModelSingleton.addAttitude(options[1], NO)
+                    RADIO_NO -> ModelSingleton.addAttitude(options[1], NO)
                     else -> throw IllegalStateException("No Radio Button selected")
                 }
             }
