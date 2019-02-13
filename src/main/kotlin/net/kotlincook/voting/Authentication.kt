@@ -45,7 +45,7 @@ object Authenticator: Authentication {
     }
 }
 
-fun main(args: Array<String>) {
+fun main1(args: Array<String>) {
     val parse = SimpleDateFormat("yyyy-MM-dd").parse("2019-02-14")
     val set: MutableSet<Int> = mutableSetOf()
     for (i in 1..30) {

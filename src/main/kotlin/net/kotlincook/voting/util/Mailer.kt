@@ -53,7 +53,7 @@ fun sendMail(emailaddess: String, code: Long) {
 }
 
 
-fun main(args: Array<String>) {
+fun main2(args: Array<String>) {
 
     val recipients0 = listOf(
             "A.Mecky@verband.creditreform.de",
