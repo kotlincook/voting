@@ -1,6 +1,8 @@
 package net.kotlincook.voting
 
 import net.kotlincook.voting.Authentication.AuthResult.*
+import net.kotlincook.voting.Authenticator.MAGIC1
+import net.kotlincook.voting.Authenticator.MAGIC2
 import java.text.SimpleDateFormat
 
 interface Authentication {
@@ -10,6 +12,9 @@ interface Authentication {
 
 object Authenticator: Authentication {
 
+    val TIME_DIVISOR = 1000L
+    val MAGIC1 = 2937L
+    val MAGIC2 = 1311L
     val usedCodes =  HashSet<String>()
 
     override fun isCodeValid(code: String?) =
@@ -33,23 +38,22 @@ object Authenticator: Authentication {
             }
         }
 
-    private fun codePreValidation(code: Long) = code % 2937L == 1311L
+    private fun codePreValidation(code: Long) = code % MAGIC1 == MAGIC2
 
     private fun codeTimeValidation(code: Long): Boolean {
-        return (code - 1311L) / 2937L > System.currentTimeMillis() / 100000L
+        return (code - MAGIC2) / MAGIC1 > System.currentTimeMillis() / TIME_DIVISOR
     }
 }
 
-//fun main(args: Array<String>) {
-//    val parse = SimpleDateFormat("yyyy-MM-dd").parse("2019-02-13")
-//    println((parse.time/100000 + 35) * 2937 + 1311)
-//    val set: MutableSet<Int> = mutableSetOf()
-//    for (i in 1..30) {
-//        set += (Math.random() * 1000.0).toInt()
-//    }
-//    val list = ArrayList(set)
-//    list.sort()
-//    list.forEach {
-//        println((parse.time/100000 + it) * 2937 + 1311)
-//    }
-//}
+fun main(args: Array<String>) {
+    val parse = SimpleDateFormat("yyyy-MM-dd").parse("2019-02-14")
+    val set: MutableSet<Int> = mutableSetOf()
+    for (i in 1..30) {
+        set += (Math.random() * 1000.0).toInt()
+    }
+    val list = ArrayList(set)
+    list.sort()
+    list.forEach {
+        println((parse.time/100000 + it) * MAGIC1 + MAGIC2)
+    }
+}
