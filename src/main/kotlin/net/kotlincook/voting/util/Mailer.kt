@@ -104,4 +104,5 @@ fun main(args: Array<String>) {
         val code = (parse.time/100000 + random) * 2937 + 1311
         sendMail(recipients1[i], code)
     }
+    // Test
 }
