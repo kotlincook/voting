@@ -52,56 +52,56 @@ fun sendMail(emailaddess: String, code: Long) {
 }
 
 
-fun main(args: Array<String>) {
-
-    val recipients0 = listOf(
-        "A.Mecky@verband.creditreform.de",
-        "a.schaefer@verband.creditreform.de",
-        "a.rotering@verband.creditreform.de",
-        "a.rauch@verband.creditreform.de",
-        "c.landsky@verband.creditreform.de",
-        "c.iven@verband.creditreform.de",
-        "c.turkalj@verband.creditreform.de",
-        "d.thom@verband.creditreform.de",
-        "e.tuzar@verband.creditreform.de",
-        "e.wulfert@verband.creditreform.de",
-        "f.vollmar@verband.creditreform.de",
-        "h.salmann@verband.creditreform.de",
-        "h.weber@verband.creditreform.de",
-        "i.alesker@verband.creditreform.de",
-        "j.devries@verband.creditreform.de",
-        "j.bittner@verband.creditreform.de",
-        "j.vollmer@verband.creditreform.de",
-        "j.wagner@verband.creditreform.de",
-        "k.sollmann@verband.creditreform.de",
-        "m.besch@verband.creditreform.de",
-        "m.bracht@verband.creditreform.de",
-        "Melanie.Kalka@sunzinet.com",
-        "m.arnold@verband.creditreform.de",
-        "o.hauch@verband.creditreform.de",
-        "p.nill@verband.creditreform.de",
-        "p.sittart@verband.creditreform.de",
-        "p.mueller@verband.creditreform.de",
-        "r.wedding@verband.creditreform.de",
-        "r.wignanek@verband.creditreform.de",
-        "Sascha.Cremers@sunzinet.com",
-        "Sebastian.Spill@sunzinet.com",
-        "s.kircher@verband.creditreform.de",
-        "u.cirkel@verband.creditreform.de",
-        "v.lutz@verband.creditreform.de")
-
-    val recipients1 = listOf("joerg.vollmer@gmx.de")
-
-    val parse = SimpleDateFormat("yyyy-MM-dd").parse("2019-02-13")
-    val randoms: MutableSet<Int> = mutableSetOf()
-
-    do {
-        randoms += (Math.random() * 1000.0).toInt()
-    }
-    while (randoms.size < recipients1.size)
-
-    randoms.forEachIndexed { i, random ->
-        val code = (parse.time/100000 + random) * 2937 + 1311
-        sendMail(recipients1[i], code)
-    }
-}
+//fun main(args: Array<String>) {
+//
+//    val recipients0 = listOf(
+//        "A.Mecky@verband.creditreform.de",
+//        "a.schaefer@verband.creditreform.de",
+//        "a.rotering@verband.creditreform.de",
+//        "a.rauch@verband.creditreform.de",
+//        "c.landsky@verband.creditreform.de",
+//        "c.iven@verband.creditreform.de",
+//        "c.turkalj@verband.creditreform.de",
+//        "d.thom@verband.creditreform.de",
+//        "e.tuzar@verband.creditreform.de",
+//        "e.wulfert@verband.creditreform.de",
+//        "f.vollmar@verband.creditreform.de",
+//        "h.salmann@verband.creditreform.de",
+//        "h.weber@verband.creditreform.de",
+//        "i.alesker@verband.creditreform.de",
+//        "j.devries@verband.creditreform.de",
+//        "j.bittner@verband.creditreform.de",
+//        "j.vollmer@verband.creditreform.de",
+//        "j.wagner@verband.creditreform.de",
+//        "k.sollmann@verband.creditreform.de",
+//        "m.besch@verband.creditreform.de",
+//        "m.bracht@verband.creditreform.de",
+//        "Melanie.Kalka@sunzinet.com",
+//        "m.arnold@verband.creditreform.de",
+//        "o.hauch@verband.creditreform.de",
+//        "p.nill@verband.creditreform.de",
+//        "p.sittart@verband.creditreform.de",
+//        "p.mueller@verband.creditreform.de",
+//        "r.wedding@verband.creditreform.de",
+//        "r.wignanek@verband.creditreform.de",
+//        "Sascha.Cremers@sunzinet.com",
+//        "Sebastian.Spill@sunzinet.com",
+//        "s.kircher@verband.creditreform.de",
+//        "u.cirkel@verband.creditreform.de",
+//        "v.lutz@verband.creditreform.de")
+//
+//    val recipients1 = listOf("joerg.vollmer@gmx.de")
+//
+//    val parse = SimpleDateFormat("yyyy-MM-dd").parse("2019-02-13")
+//    val randoms: MutableSet<Int> = mutableSetOf()
+//
+//    do {
+//        randoms += (Math.random() * 1000.0).toInt()
+//    }
+//    while (randoms.size < recipients1.size)
+//
+//    randoms.forEachIndexed { i, random ->
+//        val code = (parse.time/100000 + random) * 2937 + 1311
+//        sendMail(recipients1[i], code)
+//    }
+//}
