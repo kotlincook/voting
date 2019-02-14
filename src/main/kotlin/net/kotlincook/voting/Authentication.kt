@@ -47,7 +47,7 @@ object Authenticator: Authentication {
 }
 
 fun main1(args: Array<String>) {
-    val parse = SimpleDateFormat("yyyy-MM-dd").parse("2019-02-14")
+    val parse = SimpleDateFormat("yyyy-MM-dd").parse("2222-03-16")
     val set: MutableSet<Int> = mutableSetOf()
     for (i in 1..30) {
         set += (Math.random() * TIME_DIVISOR).toInt()
