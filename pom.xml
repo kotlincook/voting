@@ -18,7 +18,7 @@
 		<java.version>1.8</java.version>
 		<kotlin.version>1.2.71</kotlin.version>
 		<vaadin.version>12.0.5</vaadin.version>
-		<vaadin.productionMode>true</vaadin.productionMode>
+		<!--<vaadin.productionMode>true</vaadin.productionMode>-->
 	</properties>
 
 	<dependencies>
@@ -40,10 +40,10 @@
 			<version>6.3.0</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>flow-server-production-mode</artifactId>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>com.vaadin</groupId>-->
+			<!--<artifactId>flow-server-production-mode</artifactId>-->
+		<!--</dependency>-->
 
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -99,19 +99,19 @@
 				</dependencies>
 			</plugin>
 
-			<plugin>
-				<groupId>com.vaadin</groupId>
-				<artifactId>vaadin-maven-plugin</artifactId>
-				<version>${vaadin.version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>copy-production-files</goal>
-							<goal>package-for-production</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+			<!--<plugin>-->
+				<!--<groupId>com.vaadin</groupId>-->
+				<!--<artifactId>vaadin-maven-plugin</artifactId>-->
+				<!--<version>${vaadin.version}</version>-->
+				<!--<executions>-->
+					<!--<execution>-->
+						<!--<goals>-->
+							<!--<goal>copy-production-files</goal>-->
+							<!--<goal>package-for-production</goal>-->
+						<!--</goals>-->
+					<!--</execution>-->
+				<!--</executions>-->
+			<!--</plugin>-->
 
 		</plugins>
 	</build>
