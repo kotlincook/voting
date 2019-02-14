@@ -17,11 +17,15 @@ fun sendMail(emailaddess: String, code: Long) {
 
     val subject = "Abstimmung 'Entscheidungsfindung durch Konsent-Beschluss'"
     val body = """
-        <h1>Willkommen zu Crefo Vote</h1>
+        <h3>Willkommen zu Crefo Vote</h3>
         <p>Klicke auf Deinen pers&ouml;nlichen Link
         <a href='https://crefovote.herokuapp.com/voting?code=${code}'>Voting App</a>, um zur Abstimmung zu gelangen.
-        Der Link enth&auml;lt einen Code, der bis zum 13.2.2019 g&uuml;ltig ist und nur <u>einmal</u>
+        Der Link enth&auml;lt einen Code, der bis zum 14.2.2019 um 16:00 Uhr g&uuml;ltig ist und nur <u>einmal</u>
         verwendet werden kann.</p>
+        <p>Scheut nicht davor zur&uuml;ck, Eure Einw&auml;nde zu hinterlassen. Das funktioniert komplett
+        unabh&auml;ngig von der Abstimmung.</p>
+        <p>Wichtig: Die App funktioniert nicht mit dem installierten IE 11. Jeder andere aktuelle
+        Browser funktioniert.</p>
         <p>Happy Voting!</p>
     """.trimIndent()
 
@@ -66,42 +70,46 @@ fun main2(args: Array<String>) {
             "d.thom@verband.creditreform.de",
             "e.tuzar@verband.creditreform.de",
             "e.wulfert@verband.creditreform.de",
-            "f.vollmar@verband.creditreform.de",
+//            "f.vollmar@verband.creditreform.de",
             "h.salmann@verband.creditreform.de",
             "h.weber@verband.creditreform.de",
             "i.alesker@verband.creditreform.de",
             "j.devries@verband.creditreform.de",
-            "j.bittner@verband.creditreform.de",
+//            "j.bittner@verband.creditreform.de",
             "j.vollmer@verband.creditreform.de",
             "j.wagner@verband.creditreform.de",
             "k.sollmann@verband.creditreform.de",
             "m.besch@verband.creditreform.de",
             "m.bracht@verband.creditreform.de",
             "Melanie.Kalka@sunzinet.com",
-            "m.arnold@verband.creditreform.de",
+//            "m.arnold@verband.creditreform.de",
             "o.hauch@verband.creditreform.de",
             "p.nill@verband.creditreform.de",
             "p.sittart@verband.creditreform.de",
             "p.mueller@verband.creditreform.de",
-            "r.wedding@verband.creditreform.de",
+//            "r.wedding@verband.creditreform.de",
             "r.wignanek@verband.creditreform.de",
             "Sascha.Cremers@sunzinet.com",
             "Sebastian.Spill@sunzinet.com",
             "s.kircher@verband.creditreform.de",
-            "u.cirkel@verband.creditreform.de",
-            "v.lutz@verband.creditreform.de")
+            "u.cirkel@verband.creditreform.de"
+//            "v.lutz@verband.creditreform.de"
+    )
 
-    val recipients1 = listOf("joerg.vollmer@gmx.de")
+    val recipients1 = listOf("joerg.vollmer@gmx.de", "j.vollmer@verband.creditreform.de")
 
-    val parse = SimpleDateFormat("yyyy-MM-dd").parse("2019-02-13")
+    // --------------------------------------------------------------------
+
+    val recipients = recipients1
+    val parse = SimpleDateFormat("yyyy-MM-dd").parse("2019-02-15")
     val randoms: MutableSet<Int> = mutableSetOf()
 
     do {
         randoms += (Math.random() * 1000.0).toInt()
-    } while (randoms.size < recipients1.size)
+    } while (randoms.size < recipients.size)
 
     randoms.forEachIndexed { i, random ->
         val code = (parse.time / TIME_DIVISOR + random) * MAGIC1 + MAGIC2
-        sendMail(recipients1[i], code)
+        sendMail(recipients[i], code)
     }
 }
