@@ -3,6 +3,7 @@ package net.kotlincook.voting
 import net.kotlincook.voting.Authentication.AuthResult.*
 import net.kotlincook.voting.Authenticator.MAGIC1
 import net.kotlincook.voting.Authenticator.MAGIC2
+import net.kotlincook.voting.Authenticator.TIME_DIVISOR
 import java.text.SimpleDateFormat
 
 interface Authentication {
@@ -49,11 +50,11 @@ fun main1(args: Array<String>) {
     val parse = SimpleDateFormat("yyyy-MM-dd").parse("2019-02-14")
     val set: MutableSet<Int> = mutableSetOf()
     for (i in 1..30) {
-        set += (Math.random() * 1000.0).toInt()
+        set += (Math.random() * TIME_DIVISOR).toInt()
     }
     val list = ArrayList(set)
     list.sort()
     list.forEach {
-        println((parse.time/100000 + it) * MAGIC1 + MAGIC2)
+        println((parse.time/TIME_DIVISOR + it) * MAGIC1 + MAGIC2)
     }
 }
