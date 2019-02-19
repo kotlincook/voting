@@ -18,7 +18,7 @@ class Results() : VerticalLayout() {
 
     init {
         val tableData = ModelSingleton.votesPerOption.map {
-            TableRow(it.key.descripion, it.value[YES]!!, it.value[IRR]!!, it.value[NO]!!)
+            TableRow(it.key.descripion, it.value[YES]!!, it.value[OK]!!, it.value[NO]!!)
         }
 
         val table = Grid<TableRow>()

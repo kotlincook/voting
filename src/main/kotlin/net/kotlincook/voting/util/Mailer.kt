@@ -18,13 +18,13 @@ fun sendMail(emailaddess: String, code: Long) {
     val subject = "Abstimmung 'Entscheidungsfindung durch Konsent-Beschluss'"
     val body = """
         <h3>Willkommen zu Crefo Vote</h3>
-        <p>Klicke auf Deinen pers&ouml;nlichen Link
+        <p>Klick auf Deinen pers&ouml;nlichen Link
         <a href='https://crefovote.herokuapp.com/voting?code=${code}'>Voting App</a>, um zur Abstimmung zu gelangen.
-        Der Link enth&auml;lt einen Code, der bis zum 14.2.2019 um 16:00 Uhr g&uuml;ltig ist und nur <u>einmal</u>
+        Der Link enth&auml;lt einen Code, der bis zum 14.2.2019 (einschl.) g&uuml;ltig ist und nur <u>einmal</u>
         verwendet werden kann.</p>
         <p>Scheut nicht davor zur&uuml;ck, Eure Einw&auml;nde zu hinterlassen. Das funktioniert komplett
         unabh&auml;ngig von der Abstimmung.</p>
-        <p>Wichtig: Die App funktioniert nicht mit dem installierten IE 11. Jeder andere aktuelle
+        <p><b>Wichtig</b>: Die App funktioniert nicht mit dem installierten IE 11. Jeder andere aktuelle
         Browser funktioniert.</p>
         <p>Happy Voting!</p>
     """.trimIndent()
@@ -57,7 +57,7 @@ fun sendMail(emailaddess: String, code: Long) {
 }
 
 
-fun main2(args: Array<String>) {
+fun main(args: Array<String>) {
 
     val recipients0 = listOf(
             "A.Mecky@verband.creditreform.de",
@@ -96,12 +96,12 @@ fun main2(args: Array<String>) {
 //            "v.lutz@verband.creditreform.de"
     )
 
-    val recipients1 = listOf("joerg.vollmer@gmx.de", "j.vollmer@verband.creditreform.de")
+    val recipients1 = listOf("j.vollmer@verband.creditreform.de")
 
     // --------------------------------------------------------------------
 
     val recipients = recipients1
-    val parse = SimpleDateFormat("yyyy-MM-dd").parse("2019-02-15")
+    val parse = SimpleDateFormat("yyyy-MM-dd").parse("2019-02-16")
     val randoms: MutableSet<Int> = mutableSetOf()
 
     do {

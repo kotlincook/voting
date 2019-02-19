@@ -26,7 +26,7 @@ class Chart : VerticalLayout() {
 
         ModelSingleton.votesPerOption.forEach {
             configuration.addSeries(ListSeries(it.key.descripion,
-                    it.value[Attitude.YES], it.value[Attitude.IRR], it.value[Attitude.NO]))
+                    it.value[Attitude.YES], it.value[Attitude.OK], it.value[Attitude.NO]))
         }
 
         val x = XAxis()

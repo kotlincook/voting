@@ -7,7 +7,7 @@ import net.kotlincook.voting.Authenticator.TIME_DIVISOR
 import java.text.SimpleDateFormat
 
 interface Authentication {
-    enum class AuthResult { OK, USED, EXPIRED, INVALID}
+    enum class AuthResult { VALID, USED, EXPIRED, INVALID}
     fun isCodeValid(code: String?): AuthResult
 }
 
@@ -33,7 +33,7 @@ object Authenticator: Authentication {
                     !codeTimeValidation(codeAsLong) -> EXPIRED
                     else -> {
                         usedCodes += code
-                        OK
+                        VALID
                     }
                 }
             }
