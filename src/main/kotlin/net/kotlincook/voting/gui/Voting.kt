@@ -2,6 +2,7 @@ package net.kotlincook.voting.gui
 
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.dependency.StyleSheet
+import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.html.H1
 import com.vaadin.flow.component.html.H3
 import com.vaadin.flow.component.html.Label
@@ -13,7 +14,9 @@ import net.kotlincook.voting.Authentication.AuthResult.*
 import net.kotlincook.voting.Authenticator
 import net.kotlincook.voting.model.Attitude.*
 import net.kotlincook.voting.model.ModelSingleton
+import net.kotlincook.voting.model.Option
 import net.kotlincook.voting.model.options
+
 
 // https://crefovote.herokuapp.com/
 @Route("voting")
@@ -53,12 +56,12 @@ class Voting : VerticalLayout() {
         className = "voting"
         add(H1("Anonymous Voting App"))
 
-        options.forEachIndexed { i, option ->
-            add(H3(option.descripion))
-            // Kommentare
-            add(CommentList(option.arguments))
-            add(radioGroups[i])
+        val optionBlocks = options.map {
+            OptionBlock(it)
+        }.forEach {
+            add(it)
         }
+
         add(voteButton)
         add(answer)
 
@@ -88,4 +91,33 @@ class Voting : VerticalLayout() {
             }// if
         }//addClickListener
     }// init
+
+//    private fun createOptionBlock(option: Option): Div {
+//        return Div().apply {
+//            add(H3(option.descripion))
+//            // Kommentare
+//            add(CommentList(option.arguments))
+//            // Abstimm-Radio-Buttons:
+//            add(RadioButtonGroup<String>().apply {
+//                setItems(RADIO_YES, RADIO_IRR, RADIO_NO)
+//                addValueChangeListener {
+//                    voteButton.isEnabled = canVoteButtonBeEnabled()
+//                }
+//            })
+//        }
+//    }
+
+
+    class OptionBlock(option: Option): Div() {
+        val radioGroup : RadioButtonGroup<String>
+        init {
+            add(H3(option.descripion))
+            // Kommentare
+            add(CommentList(option.arguments))
+            radioGroup = RadioButtonGroup<String>().apply {
+                setItems(RADIO_YES, RADIO_IRR, RADIO_NO)
+            }.also { add(it) }
+        }
+    }
+
 }

@@ -59,3 +59,18 @@ h4 {
     width: 700px;
     max-width: 700px;
 }
+
+.plusImage {
+    /*display: none;*/
+    width: 0px;
+    transition: width 500ms ease-out;
+}
+
+.plusImage:hover {
+    width: 100px;
+}
+
+.doubts:hover + .plusImage{
+    /*display: block;*/
+    width: 100px;
+}
