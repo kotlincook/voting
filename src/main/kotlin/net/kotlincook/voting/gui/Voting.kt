@@ -37,29 +37,32 @@ class Voting : VerticalLayout() {
         isEnabled = false
     }
 
-    val radioGroups = (1..options.size).map {
-        RadioButtonGroup<String>().apply {
-            setItems(RADIO_YES, RADIO_IRR, RADIO_NO)
-            addValueChangeListener {
-                voteButton.isEnabled = canVoteButtonBeEnabled()
-            }
-        }
-    }
+//    val radioGroups = (1..options.size).map {
+//        RadioButtonGroup<String>().apply {
+//            setItems(RADIO_YES, RADIO_IRR, RADIO_NO)
+//            addValueChangeListener {
+//                voteButton.isEnabled = canVoteButtonBeEnabled()
+//            }
+//        }
+//    }
 
-    fun canVoteButtonBeEnabled(): Boolean {
-        return radioGroups.all {
-            it.value != null
-        }
-    }
+//    fun canVoteButtonBeEnabled(): Boolean {
+//        return radioGroups.all {
+//            it.value != null
+//        }
+//    }
+
+    var optionBlocks: List<OptionBlock>
 
     init {
         className = "voting"
         add(H1("Anonymous Voting App"))
 
-        val optionBlocks = options.map {
-            OptionBlock(it)
-        }.forEach {
-            add(it)
+        optionBlocks = options.map {
+            option -> OptionBlock(option)
+        }
+        optionBlocks.forEach {
+            optionBlock -> add(optionBlock)
         }
 
         add(voteButton)
@@ -80,8 +83,8 @@ class Voting : VerticalLayout() {
                         USED -> "Du hast bereits abgestimmt."
                     }
             if (valid == OK) {
-                options.forEachIndexed { i, option ->
-                    when (radioGroups[i].value) {
+                ModelSingleton.options.forEachIndexed { i, option ->
+                    when (optionBlocks[i].radioGroup.value) {
                         RADIO_YES -> ModelSingleton.addAttitude(option, YES)
                         RADIO_IRR -> ModelSingleton.addAttitude(option, OK)
                         RADIO_NO -> ModelSingleton.addAttitude(option, NO)
@@ -108,7 +111,7 @@ class Voting : VerticalLayout() {
 //    }
 
 
-    class OptionBlock(option: Option): Div() {
+    inner class OptionBlock(option: Option): Div() {
         val radioGroup : RadioButtonGroup<String>
         init {
             add(H3(option.descripion))
@@ -116,7 +119,19 @@ class Voting : VerticalLayout() {
             add(CommentList(option.arguments))
             radioGroup = RadioButtonGroup<String>().apply {
                 setItems(RADIO_YES, RADIO_IRR, RADIO_NO)
-            }.also { add(it) }
+            }.also {
+                it.addValueChangeListener {
+                    voteButton.isEnabled = canVoteButtonBeEnabled()
+                }
+                add(it)
+            }
+        }
+    }
+
+
+    fun canVoteButtonBeEnabled(): Boolean {
+        return optionBlocks.all {
+            it.radioGroup.value != null
         }
     }
 
