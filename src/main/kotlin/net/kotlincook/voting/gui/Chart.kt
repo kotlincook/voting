@@ -6,9 +6,9 @@ import com.vaadin.flow.component.dependency.StyleSheet
 import com.vaadin.flow.component.html.H1
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.router.Route
-import net.kotlincook.voting.gui.Voting.Companion.RADIO_IRR
-import net.kotlincook.voting.gui.Voting.Companion.RADIO_NO
-import net.kotlincook.voting.gui.Voting.Companion.RADIO_YES
+import net.kotlincook.voting.gui.OptionBlock.Companion.RADIO_IRR
+import net.kotlincook.voting.gui.OptionBlock.Companion.RADIO_NO
+import net.kotlincook.voting.gui.OptionBlock.Companion.RADIO_YES
 import net.kotlincook.voting.model.Attitude
 import net.kotlincook.voting.model.ModelSingleton
 
