@@ -25,11 +25,9 @@ import net.kotlincook.voting.model.options
 @StyleSheet("frontend://voting.css")
 class Voting : VerticalLayout() {
 
-    val answer = Label()
-
-    val voteButton = Button()
-
+    val voteButton = Button("Abstimmen")
     val optionBlocks: List<OptionBlock>
+    val answer = Label()
 
     private fun canVoteButtonBeEnabled(): Boolean {
         return optionBlocks.all {
@@ -51,10 +49,8 @@ class Voting : VerticalLayout() {
 
         add(voteButton.apply {
             className = "vote-button"
-            text = "Abstimmen"
-            isDisableOnClick = true
-            isEnabled = false
         })
+
         add(answer)
 
         voteButton.addClickListener {
@@ -98,12 +94,11 @@ class OptionBlock(val option: Option, radioButtonChangeListener: () -> Unit) : D
         // Kommentare
         add(CommentList(option.arguments))
         radioGroup = RadioButtonGroup<String>().apply {
+            className = "vote-radio-button-group"
             setItems(RADIO_YES, RADIO_IRR, RADIO_NO)
-        }.also {
-            it.addValueChangeListener {
+            addValueChangeListener {
                 radioButtonChangeListener()
             }
-            add(it)
-        }
+        }.also { add(it) }
     }
 }// class

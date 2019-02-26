@@ -25,7 +25,7 @@ h1 {
 
 h3 {
     color: #363636;
-    margin-bottom: 0em;
+    margin-bottom: 0.5em;
 }
 
 h4 {
@@ -38,8 +38,8 @@ h4 {
     cursor: pointer;
 }
 
-.vote-radio {
-    cursor: pointer;
+.vote-radio-button-group {
+    margin-top: 0.3em;
 }
 
 .comment-label {
@@ -58,19 +58,4 @@ h4 {
     font-size: medium;
     width: 700px;
     max-width: 700px;
-}
-
-.plusImage {
-    /*display: none;*/
-    width: 0px;
-    transition: width 500ms ease-out;
-}
-
-.plusImage:hover {
-    width: 100px;
-}
-
-.doubts:hover + .plusImage{
-    /*display: block;*/
-    width: 100px;
 }

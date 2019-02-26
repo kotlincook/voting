@@ -45,8 +45,9 @@ class CommentList (val labelList: MutableList<String> = ArrayList()) : VerticalL
         add(HorizontalLayout().apply {
             add(H4("Einwände").apply {
                 className = "doubts"
-            }, plusImage.apply {
-                className = "plusImage"
+            })
+            add(plusImage.apply {
+                className = "comment-plus-button"
             })
         })
         labelList.forEach {
