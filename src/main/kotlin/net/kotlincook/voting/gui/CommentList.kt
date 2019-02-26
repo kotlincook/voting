@@ -1,8 +1,6 @@
 package net.kotlincook.voting.gui
 
 import com.vaadin.flow.component.ClickEvent
-import com.vaadin.flow.component.ComponentEvent
-import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.html.H4
 import com.vaadin.flow.component.html.Image
 import com.vaadin.flow.component.html.Label
@@ -10,7 +8,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.component.textfield.TextField
 
-class CommentList(val labelList: MutableList<String> = ArrayList()) : VerticalLayout() {
+class CommentList (val labelList: MutableList<String> = ArrayList()) : VerticalLayout() {
 
     val plusImage = Image("frontend/add_button.png", "ADD").apply {
         className = "comment-plus-button"
