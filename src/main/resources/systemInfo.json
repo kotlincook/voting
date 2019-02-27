@@ -1,0 +1,81 @@
+{
+  "serviceName": "askAuskunft",
+  "serviceHealth": "OK",
+  "healthDescription": "Service OK",
+  "serviceMode": "LIVE",
+  "warVersion": "2.16.0-SNAPSHOT",
+  "warBuild": "",
+  "buildJdk": "1.8.0_171",
+  "jvmStartTime": "2019-02-25 10:15:21",
+  "uptime": "002d:23h:57m:22s",
+  "currentMemoryConsumption": 253755392,
+  "calledServices": {
+    "VZ-APP": {
+      "serviceName": "directoryService",
+      "serviceHealth": "OK",
+      "healthDescription": "Service OK - Mock-Daten-Version: 2.2.19",
+      "serviceMode": "MOCK",
+      "warVersion": "2.18.0-SNAPSHOT",
+      "warBuild": "",
+      "buildJdk": "1.8.0_171",
+      "jvmStartTime": "2019-02-25 10:14:26",
+      "uptime": "002d:23h:58m:17s",
+      "currentMemoryConsumption": 240123904,
+      "calledServices": {
+        "CTO-A": {
+          "serviceName": "ctoa-mock-ctoa",
+          "serviceHealth": "OK",
+          "healthDescription": "Service OK",
+          "serviceMode": "MOCK",
+          "warVersion": "2.11.0-SNAPSHOT",
+          "warBuild": "",
+          "buildJdk": "1.8.0_162",
+          "jvmStartTime": null,
+          "uptime": null,
+          "currentMemoryConsumption": null,
+          "calledServices": null
+        }
+      }
+    },
+    "CTO-L": {
+      "serviceName": null,
+      "serviceHealth": "OK",
+      "healthDescription": "Service OK - Mock-Daten-Version: null",
+      "serviceMode": "UNKNOWN",
+      "warVersion": null,
+      "warBuild": "",
+      "buildJdk": "1.8.0_171",
+      "jvmStartTime": null,
+      "uptime": null,
+      "currentMemoryConsumption": null,
+      "calledServices": null
+    },
+    "auskunft-service": {
+      "serviceName": "auskunft-service",
+      "serviceHealth": "OK",
+      "healthDescription": "Service OK",
+      "serviceMode": "MOCK",
+      "warVersion": "1.0.0-SNAPSHOT",
+      "warBuild": "",
+      "buildJdk": "1.8.0_171",
+      "jvmStartTime": "2019-02-21 12:12:56",
+      "uptime": "006d:21h:59m:47s",
+      "currentMemoryConsumption": 192413696,
+      "calledServices": {
+        "CTO-A": {
+          "serviceName": "ctoa-mock-ctoa",
+          "serviceHealth": "OK",
+          "healthDescription": "Service OK",
+          "serviceMode": "MOCK",
+          "warVersion": "2.11.0-SNAPSHOT",
+          "warBuild": "",
+          "buildJdk": "1.8.0_162",
+          "jvmStartTime": null,
+          "uptime": null,
+          "currentMemoryConsumption": null,
+          "calledServices": null
+        }
+      }
+    }
+  }
+}
