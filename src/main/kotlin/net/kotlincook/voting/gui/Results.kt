@@ -18,7 +18,7 @@ class Results() : VerticalLayout() {
 
     init {
         val tableData = ModelSingleton.votesPerOption.map {
-            TableRow(it.key.descripion, it.value[YES]!!, it.value[IRR]!!, it.value[NO]!!)
+            TableRow(it.key.descripion, it.value[YES]!!, it.value[OK]!!, it.value[NO]!!)
         }
 
         val table = Grid<TableRow>()
@@ -26,8 +26,8 @@ class Results() : VerticalLayout() {
         table.setItems(tableData)
         table.addColumn(TableRow::optionDescription).setHeader("Option")
         table.addColumn(TableRow::cntYes).setHeader("Ja-Stimmen")
-        table.addColumn(TableRow::cntIrr).setHeader("Irrelevant")
-        table.addColumn(TableRow::cntNo).setHeader("Nein-Stimmen")
+        table.addColumn(TableRow::cntIrr).setHeader("Ok-Stimmen")
+        table.addColumn(TableRow::cntNo).setHeader("Veto-Stimmen")
         table.columns[0].width = "600px"
         table.columns[1].width = "130px"
         table.columns[2].width = "130px"

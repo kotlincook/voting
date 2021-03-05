@@ -4,12 +4,15 @@ import net.kotlincook.voting.Authentication.AuthResult.*
 import java.text.SimpleDateFormat
 
 interface Authentication {
-    enum class AuthResult { OK, USED, EXPIRED, INVALID}
+    enum class AuthResult { VALID, USED, EXPIRED, INVALID}
     fun isCodeValid(code: String?): AuthResult
 }
 
 object Authenticator: Authentication {
 
+    val TIME_DIVISOR = 1000L
+    val MAGIC1 = 2937L
+    val MAGIC2 = 1311L
     val usedCodes =  HashSet<String>()
 
     override fun isCodeValid(code: String?) =
@@ -27,29 +30,28 @@ object Authenticator: Authentication {
                     !codeTimeValidation(codeAsLong) -> EXPIRED
                     else -> {
                         usedCodes += code
-                        OK
+                        VALID
                     }
                 }
             }
         }
 
-    private fun codePreValidation(code: Long) = code % 2937L == 1311L
+    private fun codePreValidation(code: Long) = code % MAGIC1 == MAGIC2
 
     private fun codeTimeValidation(code: Long): Boolean {
-        return (code - 1311L) / 2937L > System.currentTimeMillis() / 100000L
+        return (code - MAGIC2) / MAGIC1 > System.currentTimeMillis() / TIME_DIVISOR
     }
 }
 
-fun main() {
-    val parse = SimpleDateFormat("yyyy-MM-dd").parse("2021-02-26")
-    println((parse.time/100000 + 35) * 2937 + 1311)
+fun main1(args: Array<String>) {
+    val parse = SimpleDateFormat("yyyy-MM-dd").parse("2222-03-16")
     val set: MutableSet<Int> = mutableSetOf()
     for (i in 1..30) {
-        set += (Math.random() * 1000.0).toInt()
+        set += (Math.random() * TIME_DIVISOR).toInt()
     }
     val list = ArrayList(set)
     list.sort()
     list.forEach {
-        println((parse.time/100000 + it) * 2937 + 1311)
+        println((parse.time/TIME_DIVISOR + it) * MAGIC1 + MAGIC2)
     }
 }

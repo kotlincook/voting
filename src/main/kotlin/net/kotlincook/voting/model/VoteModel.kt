@@ -2,19 +2,19 @@ package net.kotlincook.voting.model
 
 import net.kotlincook.voting.model.Attitude.*
 
-val options = listOf(Option("Wir möchten in Zukunft per Konsent-Beschluss abstimmen."),
-                     Option("Wir wollen so weitermachen wie bislang."))
+val options = listOf(Option("Das Meeting startet um 8 Uhr."),
+                     Option("Das Meeting startet um 16 Uhr."))
 
 object ModelSingleton : VoteModel(options)
 
 enum class Attitude {
-    YES, IRR, NO
+    YES, OK, NO
 }
 
 class AttitudeCounter: HashMap<Attitude, Int>() {
 
     init {
-        this[IRR] = 0
+        this[OK] = 0
         this[NO] = 0
         this[YES] = 0
     }
@@ -24,7 +24,7 @@ class AttitudeCounter: HashMap<Attitude, Int>() {
     }
 
     override fun toString(): String {
-        return "yes = ${this[YES]}, irr = ${this[IRR]}, no = ${this[NO]}"
+        return "yes = ${this[YES]}, irr = ${this[OK]}, no = ${this[NO]}"
     }
 }
 

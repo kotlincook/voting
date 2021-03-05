@@ -67,10 +67,11 @@ class Voting : VerticalLayout() {
         voteButton.addClickListener {
             // val ip = UI.getCurrent().session.browser.address
             val valid = Authenticator.isCodeValid(code)
+//            val valid = OK
 
             answer.text =
                     when (valid) {
-                        OK -> "Vielen Dank für Deine Teilnahme!"
+                        VALID -> "Vielen Dank für Deine Teilnahme!"
                         EXPIRED -> "Die Zeit für die Teilnahme ist bereits abgelaufen."
                         INVALID -> "Ungültiger Code! Bei Problemen wende Dich bitte an Jörg."
                         USED -> "Du hast bereits abgestimmt."
@@ -79,7 +80,7 @@ class Voting : VerticalLayout() {
                 options.forEachIndexed { i, option ->
                     when (radioGroups[i].value) {
                         RADIO_YES -> ModelSingleton.addAttitude(option, YES)
-                        RADIO_IRR -> ModelSingleton.addAttitude(option, IRR)
+                        RADIO_IRR -> ModelSingleton.addAttitude(option, OK)
                         RADIO_NO -> ModelSingleton.addAttitude(option, NO)
                         else -> throw IllegalStateException("No Radio Button selected")
                     }
