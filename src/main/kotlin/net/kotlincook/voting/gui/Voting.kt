@@ -76,7 +76,7 @@ class Voting : VerticalLayout() {
                         INVALID -> "Ungültiger Code! Bei Problemen wende Dich bitte an Jörg."
                         USED -> "Du hast bereits abgestimmt."
                     }
-            if (valid == OK) {
+            if (valid == VALID) {
                 options.forEachIndexed { i, option ->
                     when (radioGroups[i].value) {
                         RADIO_YES -> ModelSingleton.addAttitude(option, YES)

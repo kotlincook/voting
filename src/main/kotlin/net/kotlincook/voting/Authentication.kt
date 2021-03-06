@@ -8,11 +8,12 @@ interface Authentication {
     fun isCodeValid(code: String?): AuthResult
 }
 
-object Authenticator: Authentication {
 
-    val TIME_DIVISOR = 1000L
-    val MAGIC1 = 2937L
-    val MAGIC2 = 1311L
+val TIME_DIVISOR = 1000L
+val MAGIC1 = 2937L
+val MAGIC2 = 1311L
+
+object Authenticator: Authentication {
     val usedCodes =  HashSet<String>()
 
     override fun isCodeValid(code: String?) =

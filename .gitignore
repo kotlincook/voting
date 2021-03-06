@@ -1,5 +1,6 @@
 /target/
 /graphics/
+/node_modules/
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
@@ -10,6 +11,12 @@
 .settings
 .springBeans
 .sts4-cache
+webpack.config.js
+webpack.generated.js
+package.json
+pnpmfile.js
+tsconfig.json
+types.d.ts
 
 ### IntelliJ IDEA ###
 .idea
@@ -17,10 +24,3 @@
 *.iml
 *.ipr
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-/build/
