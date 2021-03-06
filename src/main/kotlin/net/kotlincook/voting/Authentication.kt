@@ -1,6 +1,9 @@
 package net.kotlincook.voting
 
 import net.kotlincook.voting.Authentication.AuthResult.*
+import net.kotlincook.voting.Authenticator.MAGIC1
+import net.kotlincook.voting.Authenticator.MAGIC2
+import net.kotlincook.voting.Authenticator.TIME_DIVISOR
 import java.text.SimpleDateFormat
 
 interface Authentication {
@@ -8,12 +11,10 @@ interface Authentication {
     fun isCodeValid(code: String?): AuthResult
 }
 
-
-val TIME_DIVISOR = 1000L
-val MAGIC1 = 2937L
-val MAGIC2 = 1311L
-
 object Authenticator: Authentication {
+    val TIME_DIVISOR = 1000L
+    val MAGIC1 = 2937L
+    val MAGIC2 = 1311L
     val usedCodes =  HashSet<String>()
 
     override fun isCodeValid(code: String?) =
@@ -44,7 +45,7 @@ object Authenticator: Authentication {
     }
 }
 
-fun main1(args: Array<String>) {
+fun main() {
     val parse = SimpleDateFormat("yyyy-MM-dd").parse("2222-03-16")
     val set: MutableSet<Int> = mutableSetOf()
     for (i in 1..30) {

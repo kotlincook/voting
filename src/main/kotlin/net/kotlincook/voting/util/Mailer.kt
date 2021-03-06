@@ -1,8 +1,8 @@
 package net.kotlincook.voting.util
 
-import net.kotlincook.voting.MAGIC1
-import net.kotlincook.voting.MAGIC2
-import net.kotlincook.voting.TIME_DIVISOR
+import net.kotlincook.voting.Authenticator.MAGIC1
+import net.kotlincook.voting.Authenticator.MAGIC2
+import net.kotlincook.voting.Authenticator.TIME_DIVISOR
 import java.text.SimpleDateFormat
 import javax.mail.Message
 import javax.mail.Session
@@ -57,9 +57,9 @@ fun sendMail(emailaddess: String, code: Long) {
 }
 
 
-fun main(args: Array<String>) {
+fun main() {
 
-    val recipients0 = listOf(
+    listOf(
             "A.Mecky@verband.creditreform.de",
             "a.schaefer@verband.creditreform.de",
             "a.rotering@verband.creditreform.de",
