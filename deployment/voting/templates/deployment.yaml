@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "voting.name" . }}-deployment
+  labels:
+    app: {{ include "voting.name" . }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ include "voting.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "voting.name" . }}
+    spec:
+      containers:
+        - name: {{ include "voting.name" . }}
+          image: javacook/voting:latest

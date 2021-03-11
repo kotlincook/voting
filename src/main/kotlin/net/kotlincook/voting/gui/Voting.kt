@@ -66,8 +66,8 @@ class Voting : VerticalLayout() {
 
         voteButton.addClickListener {
             // val ip = UI.getCurrent().session.browser.address
-            val valid = Authenticator.isCodeValid(code)
-//            val valid = OK
+             val valid = Authenticator.isCodeValid(code)
+            val valid = OK
 
             answer.text =
                     when (valid) {
