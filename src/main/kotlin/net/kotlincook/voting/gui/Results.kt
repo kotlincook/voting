@@ -1,5 +1,6 @@
 package net.kotlincook.voting.gui
 
+import com.vaadin.external.org.slf4j.LoggerFactory
 import com.vaadin.flow.component.dependency.StyleSheet
 import com.vaadin.flow.component.grid.Grid
 import com.vaadin.flow.component.html.H1
@@ -13,11 +14,15 @@ import net.kotlincook.voting.model.ModelSingleton
 @StyleSheet("frontend://results.css")
 class Results() : VerticalLayout() {
 
+    val logger = LoggerFactory.getLogger(Results::class.java);
+
     data class TableRow(var optionDescription: String,
                         var cntYes: Int, var cntIrr: Int, var cntNo:Int)
 
     init {
+        logger.info("Voting result:")
         val tableData = ModelSingleton.votesPerOption.map {
+            logger.info("{}", it)
             TableRow(it.key.descripion, it.value[YES]!!, it.value[OK]!!, it.value[NO]!!)
         }
 

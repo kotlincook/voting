@@ -10,15 +10,17 @@ import com.vaadin.flow.component.radiobutton.RadioButtonGroup
 import com.vaadin.flow.router.Route
 import com.vaadin.flow.server.VaadinService
 import net.kotlincook.voting.Authentication.AuthResult.*
-import net.kotlincook.voting.Authenticator
 import net.kotlincook.voting.model.Attitude.*
 import net.kotlincook.voting.model.ModelSingleton
 import net.kotlincook.voting.model.options
+import org.slf4j.LoggerFactory
 
 // https://crefovote.herokuapp.com/
-@Route("voting")
+@Route("")
 @StyleSheet("frontend://voting.css")
 class Voting : VerticalLayout() {
+
+    val logger = LoggerFactory.getLogger(Voting::class.java);
     val code: String?
     val answer = Label()
 
@@ -66,8 +68,9 @@ class Voting : VerticalLayout() {
 
         voteButton.addClickListener {
             // val ip = UI.getCurrent().session.browser.address
-             val valid = Authenticator.isCodeValid(code)
-            val valid = OK
+//            val valid = Authenticator.isCodeValid(code)
+            val valid = VALID
+            logger.info("Voting successful")
 
             answer.text =
                     when (valid) {
