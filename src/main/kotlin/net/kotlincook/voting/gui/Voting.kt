@@ -10,12 +10,13 @@ import com.vaadin.flow.component.radiobutton.RadioButtonGroup
 import com.vaadin.flow.router.Route
 import com.vaadin.flow.server.VaadinService
 import net.kotlincook.voting.Authentication.AuthResult.*
+import net.kotlincook.voting.actuator.VotingMetrics
 import net.kotlincook.voting.model.Attitude.*
 import net.kotlincook.voting.model.ModelSingleton
 import net.kotlincook.voting.model.options
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Autowired
 
-// https://crefovote.herokuapp.com/
 @Route("")
 @StyleSheet("frontend://voting.css")
 class Voting : VerticalLayout() {
@@ -23,6 +24,9 @@ class Voting : VerticalLayout() {
     val logger = LoggerFactory.getLogger(Voting::class.java);
     val code: String?
     val answer = Label()
+
+    @Autowired
+    lateinit var votingMetrics: VotingMetrics
 
     companion object {
         val RADIO_YES = "ja, ich bin dafür"
@@ -71,6 +75,7 @@ class Voting : VerticalLayout() {
 //            val valid = Authenticator.isCodeValid(code)
             val valid = VALID
             logger.info("Voting successful")
+            votingMetrics.countVoting()
 
             answer.text =
                     when (valid) {

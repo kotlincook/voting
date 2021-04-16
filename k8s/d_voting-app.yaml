@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voting-app-tekton
+  namespace: gravensteiner
+  labels:
+    app: voting-app-tekton
+spec:
+  selector:
+    matchLabels:
+      app: voting-app-tekton
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: voting-app-tekton
+    spec:
+      containers:
+        - name: voting-app-tekton
+#          image: voting-app-tekton klappte nicht! Die folgenden Infos hab ich aus dem ImageStream
+          image: image-registry.openshift-image-registry.svc:5000/gravensteiner/voting-app:latest
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          env:
+            - name: REDIS_PASSWORD
+              value: redis_password
